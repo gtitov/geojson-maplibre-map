@@ -1,12 +1,12 @@
 const map = new maplibregl.Map({
-  container: 'map', // container id
+  container: 'map',
   style: {
     "version": 8,
     "sources": {},
     "layers": []
   },
-  center: [51, 0], // starting position [lng, lat]
-  zoom: 1, // starting zoom
+  center: [51, 0],
+  zoom: 1,
 })
 
 map.on('load', () => {
@@ -83,22 +83,10 @@ map.on('load', () => {
   map.on('click', ['cities-layer'], (e) => {
     // console.log(e)
     // console.log(e.features)
-    document.getElementById('name').innerHTML = e.features[0].properties.NAME
-    map.flyTo({
-      center: e.features[0].geometry.coordinates,
-      zoom: 8
-    })
-  })
-
-  map.on('click', (e) => {
-    if (map.queryRenderedFeatures(e.point, {
-      layers: ['cities-layer']
-    }) == 0) {
-      map.flyTo({
-        center: e.lngLat,
-        zoom: 2
-      })
-    }
+    new maplibregl.Popup()
+      .setLngLat(e.features[0].geometry.coordinates)
+      .setHTML(e.features[0].properties.NAME)
+      .addTo(map);
   })
 
 
