@@ -1,5 +1,6 @@
 const map = new maplibregl.Map({
   container: 'map',
+  // style: "https://raw.githubusercontent.com/gtitov/basemaps/refs/heads/master/positron-nolabels.json",
   style: {
     "version": 8,
     "sources": {},
